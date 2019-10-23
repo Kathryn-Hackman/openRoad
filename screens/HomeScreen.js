@@ -5,56 +5,28 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
+  Button,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 
+import Constants from 'expo-constants';
 import { MonoText } from '../components/StyledText';
+import { NavigationEvents } from 'react-navigation';
 
-export default function HomeScreen() {
+function Seperator(){
+  return <View style={styles.separator} />;
+}
+export default function HomeScreen(props) {
+  const {navigate} = props.navigation;
   return (
     <View style={styles.container}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
+          <Button
+          title= "new journey"
+          color="#f194ff"
+          onPress={() => navigate('Links')}
           />
-        </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}> {
-          //change this text and the app will automatically reload in the ios simulator
-        }
-            Hello World!!
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
           This is a tab bar. You can edit it in:
@@ -114,6 +86,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    marginTop: Constants.statusBarHeight,
+    marginHorizontal: 16,
+  },
+  title: {
+    textAlign: 'center',
+    marginVertical: 8,
+  },
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   developmentModeText: {
     marginBottom: 20,

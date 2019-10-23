@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createAppContainer,createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -10,6 +10,11 @@ import SettingsScreen from '../screens/SettingsScreen';
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
+});
+
+const MainNavigator = createStackNavigator({
+  Home: {screen: HomeScreen},
+  Links: {screen: LinksScreen},
 });
 
 const HomeStack = createStackNavigator(
@@ -75,4 +80,6 @@ const tabNavigator = createBottomTabNavigator({
 
 tabNavigator.path = '';
 
-export default tabNavigator;
+const App = createAppContainer(MainNavigator);
+
+export default App;

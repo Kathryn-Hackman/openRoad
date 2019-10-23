@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "FirstProject",
-    "slug": "FirstProject",
+    "name": "openRoad",
+    "slug": "openRoad",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
