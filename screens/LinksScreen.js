@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
+
 import { TextInputBox } from '../components/TextInputBox';
 
 var url = "";//manually enter your ip address
@@ -25,9 +26,11 @@ fetch(
 	});
 }
 
+
 export default function LinksScreen() {
   return (
     <ScrollView style={styles.container}>
+
       	<View>
 					<TextInputBox label='Start'></TextInputBox>
 					<TextInputBox label='Destination'></TextInputBox>
@@ -39,15 +42,14 @@ export default function LinksScreen() {
     </ScrollView>
   );
 }
-
+//button onpress - send to backend
 LinksScreen.navigationOptions = {
   title: 'user input',
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
+    paddingTop: 30,
     backgroundColor: '#fff',
   },
 });
