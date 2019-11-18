@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 import { TextInputBox } from '../components/TextInputBox';
@@ -12,19 +12,7 @@ var endTest = "address 2"
 var name = "New Journey 7"
 
   
-function createNewJourney(start,end) {
-  
-console.log("Creating New Journey...");
-fetch(
-	url+'newJourney?start='+encodeURIComponent(start)+"&end="+encodeURIComponent(end)+"&name="+encodeURIComponent(name)
-)
-	.then(res => res.json())
-	.then(json => {
-		console.log("Call response:");
-		console.log(json);
-		console.log("New Journey Created.");
-	});
-}
+
 
 
 export default function LinksScreen() {

@@ -1,11 +1,17 @@
 import React from 'react';
 import { TextInput, Text, View} from 'react-native';
 
+
+
 export class TextInputBox extends React.Component  {
   state = {
     text: ''
   };
-  //label = "starti";
+  //label = "start";
+  changeTexts(textVal){
+  	this.setState({textVal})
+  	this.props.handler(textVal);
+  }
 
   render(){
     return (
@@ -13,7 +19,9 @@ export class TextInputBox extends React.Component  {
 		  <Text>{this.props.label}</Text>
 		  <TextInput
 			value={this.state.text}
-			onChangeText={text => this.setState({ text })}
+			onChangeText={
+				changeTexts(this.state.text)
+			}
 		  />
 		  
 		</View>
