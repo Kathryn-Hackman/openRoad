@@ -11,10 +11,11 @@ function Seperator(){
   return <View style={styles.separator} />;
 }
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
   // render() {
+    const {navigate} = props.navigation;
     return (
-      <View style={{flex:1, backgroundColor: '#f3f3f3'}}>
+      <View style={{flex:1, backgroundColor: '#b0e0e6'}}>
         <ActionButton buttonColor="rgba(231,76,60,1)">
           <ActionButton.Item buttonColor='#9b59b6' title="New Journey" onPress={() => navigate('Links')}>
             <Icon name="md-create" style={styles.actionButtonIcon} />

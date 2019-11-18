@@ -15,11 +15,13 @@ const config = Platform.select({
 const MainNavigator = createStackNavigator({
   Home: {screen: HomeScreen},
   Links: {screen: LinksScreen},
+  Interests: {screen: SettingsScreen},
 });
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+    //Home: SettingsScreen,
   },
   config
 );
@@ -58,7 +60,7 @@ LinksStack.path = '';
 
 const SettingsStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Interests: SettingsScreen,
   },
   config
 );
