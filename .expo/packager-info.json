@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": "https://cq-tk2.anonymous.openroadflaskapp2.exp.direct",
-  "packagerNgrokUrl": "https://packager.cq-tk2.anonymous.openroadflaskapp2.exp.direct",
-  "ngrokPid": 12648,
+  "packagerPort": 19001,
+  "packagerPid": 3220,
+  "expoServerNgrokUrl": "https://nw-gsf.anonymous.openroadflaskapp2.exp.direct",
+  "packagerNgrokUrl": "https://packager.nw-gsf.anonymous.openroadflaskapp2.exp.direct",
+  "ngrokPid": 1096,
   "webpackServerPort": null
 }

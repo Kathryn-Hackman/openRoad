@@ -20,7 +20,7 @@ export class TextInputBox extends React.Component  {
 		  <TextInput
 			value={this.state.text}
 			onChangeText={
-				changeTexts(this.state.text)
+				this.changeTexts(this.state.text)
 			}
 		  />
 		  
