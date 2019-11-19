@@ -1,21 +1,20 @@
-import * as WebBrowser from 'expo-web-browser';
-import Constants from 'expo-constants';
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import PropTypes from 'prop-types';
 import ActionButton from 'react-native-action-button';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { NavigationEvents } from 'react-navigation';
+import Icon from 'react-native-ionicons';
 
 function Seperator(){
   return <View style={styles.separator} />;
 }
 
 export default function HomeScreen(props) {
+  const gradientHeight=500;
+  const gradientBackground  = 'blue';
+  const data = Array.from({ length: gradientHeight });
   // render() {
     const {navigate} = props.navigation;
     return (
-      <View style={{flex:1, backgroundColor: '#b0e0e6'}}>
+      <View style={{flex:1}}>
         <ActionButton buttonColor="rgba(231,76,60,1)">
           <ActionButton.Item buttonColor='#9b59b6' title="New Journey" onPress={() => navigate('Links')}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
@@ -27,9 +26,23 @@ export default function HomeScreen(props) {
             <Icon name="md-done-all" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
+        {data.map((_, i) => (
+          <View
+          key = {i}
+          style = {{
+            position: 'absolute',
+            backgroundColor: gradientBackground,
+            height: 1,
+            bottom: (gradientHeight - i),
+            right: 0,
+            left: 0,
+            zIndex: 2,
+            opacity: (1 / gradientHeight) * (i + 1)
+          }}
+          />
+        ))}
       </View>
     );
-  // }
 }
 const styles = StyleSheet.create({
   actionButtonIcon: {

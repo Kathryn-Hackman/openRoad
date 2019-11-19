@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, Text, ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import { Button, ScrollView, StyleSheet } from 'react-native';
 
 import { TextInputBox } from '../components/TextInputBox';
-import { NavigationEvents } from 'react-navigation';
+
 
 var url = "";//manually enter your ip address
 url = 'http://'+ url  +':5000/'

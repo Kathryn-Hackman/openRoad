@@ -1,7 +1,5 @@
 //user interests screen irl
-
 import React from 'react';
-import { ExpoConfigView } from '@expo/samples';
 import { Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
 
 export default function SettingsScreen() {
