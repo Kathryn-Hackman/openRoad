@@ -4,8 +4,8 @@ import { ExpoLinksView } from '@expo/samples';
 
 import { TextInputBox } from '../components/TextInputBox';
 
-var url = "155.41.74.64";//manually enter your ip address
-url = 'http://'+ url  +':5000/'
+var url = "https://openroadflaskapp.herokuapp.com/";
+//url = 'http://'+ ipAddr  +':5000/'//manually enter your ip address
 
 var startTest = "address 1"
 var endTest = "address 2"
