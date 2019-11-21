@@ -1,21 +1,28 @@
 import React from 'react';
-import { Button, Text, ScrollView, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet } from 'react-native';
+import MapView from 'react-native-maps';
 import { ExpoLinksView } from '@expo/samples';
 import { TextInputBox } from '../components/TextInputBox';
 import { NavigationEvents } from 'react-navigation';
 
-export default function PreviewScreen(props){
-    return (
-    <ScrollView style={styles.container}>
-				<Text>Your Current Journey from [start city] to [end city]:</Text>
-    </ScrollView>
-  );
+//to get the user's current location
+//Geolocation.getCurrentPosition(info => console.log(info));
+
+export default function PreviewScreen(){
+      return (
+        <MapView
+        style ={styles.map}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude:-122.4324,
+          latitudeDelta:0.0922,
+          longitudeDelta:.0421,
+        }}
+        />
+  ); 
 }
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#b0e0e6',
-      paddingTop: 20,
-      paddingLeft: 20,
-    },
-  });
+  map: {
+    ...StyleSheet.absoluteFillObject,
+}});
