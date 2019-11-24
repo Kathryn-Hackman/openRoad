@@ -1,8 +1,9 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { Button, Text, ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 import { TextInputBox } from '../components/TextInputBox';
+import { NavigationEvents } from 'react-navigation';
 
 var url = "";//manually enter your ip address
 url = 'http://'+ url  +':5000/'
@@ -27,29 +28,25 @@ fetch(
 }
 
 
-export default function LinksScreen() {
+export default function LinksScreen(props) {
+const {navigate} = props.navigation;
   return (
     <ScrollView style={styles.container}>
-
-      	<View>
-					<TextInputBox label='Start'></TextInputBox>
-					<TextInputBox label='Destination'></TextInputBox>
-					
-					<Text style={styles.getStartedText} onPress={() => createNewJourney(startTest,endTest)}>
-					Create New Journey!
-					</Text>
-				</View>
+				<TextInputBox label='Start'></TextInputBox>
+				<TextInputBox label='Destination'></TextInputBox>
+				<Button title = 'Create New Journey!' onPress={() => navigate('Preview')}/>
     </ScrollView>
   );
 }
 //button onpress - send to backend
 LinksScreen.navigationOptions = {
-  title: 'user input',
+  title: 'New Journey',
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
-    backgroundColor: '#fff',
+	paddingTop: 20,
+	paddingLeft: 20,
+    backgroundColor: '#b0e0e6',
   },
 });

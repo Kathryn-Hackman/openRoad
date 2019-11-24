@@ -6,16 +6,22 @@ import PropTypes from 'prop-types';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { NavigationEvents } from 'react-navigation';
+import { constants } from 'expo';
 
 function Seperator(){
   return <View style={styles.separator} />;
 }
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
   // render() {
+    const {navigate} = props.navigation;
+    const gradientHeight = 900;
+    const gradientBackground = 'rgb(37, 151, 160)';
+    const data = Array.from({ length: gradientHeight });
     return (
-      <View style={{flex:1, backgroundColor: '#f3f3f3'}}>
-        <ActionButton buttonColor="rgba(231,76,60,1)">
+      <View style={{flex:1}}>
+ 
+        <ActionButton>
           <ActionButton.Item buttonColor='#9b59b6' title="New Journey" onPress={() => navigate('Links')}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
@@ -29,8 +35,7 @@ export default function HomeScreen() {
       </View>
     );
   // }
-}
-const styles = StyleSheet.create({
+}const styles = StyleSheet.create({
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
