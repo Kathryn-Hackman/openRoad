@@ -30,11 +30,13 @@ fetch(
 
 export default function LinksScreen(props) {
 const {navigate} = props.navigation;
+const passParams = {waypoints:'["Boston, MA","Syracuse, NY"]'}
   return (
     <ScrollView style={styles.container}>
 				<TextInputBox label='Start'></TextInputBox>
 				<TextInputBox label='Destination'></TextInputBox>
-				<Button title = 'Create New Journey!' onPress={() => navigate('Preview')}/>
+
+				<Button title = 'Create New Journey!' onPress={() => navigate('Route',passParams)}/>
     </ScrollView>
   );
 }
