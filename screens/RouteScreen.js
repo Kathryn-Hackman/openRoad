@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet, ScrollView } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { TextInputBox } from '../components/TextInputBox';
 import { NavigationEvents } from 'react-navigation';
@@ -34,9 +34,12 @@ export default function RouteScreen(props){
 
       return (
         <View>
-          <TotalRoute/>
-          <Text>here is some text:</Text>
-          {waypointBlocks}
+          <ScrollView>
+            <TotalRoute/>
+            <Text>here is some text:</Text>
+            {waypointBlocks}
+          </ScrollView>
+
         </View>
 
   ); 

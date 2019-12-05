@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, Text, View, StyleSheet, Button} from 'react-native';
+import { TextInput, Text, View, StyleSheet, Button, TouchableOpacity} from 'react-native';
 
 export class TotalRoute extends React.Component  {
 
@@ -16,27 +16,43 @@ export class TotalRoute extends React.Component  {
 
 
 export class TravelTime extends React.Component  {
+  
+  findWaypointsOn(startList,endList){
+    const url = "https://openroadflaskapp.herokuapp.com/";
+    console.log("Adding Waypoints...");
+    
+    var start = startList[startList.length-1];
+    var end = endList[0];
 
-  findWaypointsOn(start,end){
-    return start+end;
+    console.log(url+'getWaypoints?start='+encodeURIComponent(start)+"&end="+encodeURIComponent(end)+"&interests="+encodeURIComponent("['hiking','museums']")+"&num="+encodeURIComponent("3"));
+    fetch(
+      url+'getWaypoints?start='+encodeURIComponent(start)+"&end="+encodeURIComponent(end)+"&interests="+encodeURIComponent("['hiking','museums']")+"&num="+encodeURIComponent("3")
+    )
+      .then(res => res.json())
+      .then(json => {
+        console.log("Call response:");
+        console.log(json);
+        console.log("waypoints found.");
+        var newWaypoints = json.waypoints;
+        var passStringify = JSON.stringify(startList.concat(newWaypoints).concat(endList));
+        console.log("passStringify: " + passStringify);
+        var passParams = {waypoints:passStringify};
+        this.props.navigation.navigate('Route',passParams);
+      });
+
   }
 
-  render(){
-    const stringList = ["Amherst, MA","Springfield, MA","Raleigh, NC"];
 
+  render(){
     console.log(this.props.start);
     console.log(this.props.end);
-    const passString = '["Boston, MA","Amherst, MA","Syracuse, NY"]';
-    const passStringifyOld = JSON.stringify(this.props.start.concat([stringList[Math.floor(Math.random() * stringList.length)]]).concat(this.props.end));
-    const passStringify = JSON.stringify(this.props.start.concat([this.findWaypointsOn(this.props.start[this.props.start.length-1],this.props.end[0])]).concat(this.props.end));
-    const passParams = {waypoints:passStringify};
-    console.log(passString);
-    console.log(passStringify);
+
+    
     return (
     <View>
-      <Button
-        title = {"travel time =  ".concat(this.props.time) + " (click to add stops)"}
-        onPress={() => this.props.navigation.navigate('Route',passParams)}></Button>
+      <TouchableOpacity style={{ backgroundColor: "#0DC2D1", height: 30, width:30, marginTop: -15, marginBottom: -15, alignSelf: 'flex-end', zIndex: 5}} onPress={() => this.findWaypointsOn(this.props.start,this.props.end)}>
+        <Text>+</Text>
+      </TouchableOpacity>
       
     </View>
     );
@@ -49,8 +65,9 @@ export class Waypoint extends React.Component  {
   render(){
     return (
     <View>
-      <Button title={this.props.location}
-              color="#0E8629"></Button>
+      <TouchableOpacity style={{ backgroundColor: "#FFCA35", borderWidth: 3, borderColor: "#0DC2D1", height: 100}}>
+        <Text>{JSON.stringify(this.props.location)}</Text>
+      </TouchableOpacity>
       
     </View>
     );
