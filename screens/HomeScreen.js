@@ -5,13 +5,11 @@ import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { NavigationEvents } from 'react-navigation';
+import { NavigationEvents, NavigationActions, createAppContainer } from 'react-navigation';
 import { constants } from 'expo';
 import { LinearGradient } from 'expo-linear-gradient';
+import { createStackNavigator } from 'react-navigation-stack';
 
-function Seperator(){
-  return <View style={styles.separator} />;
-}
 
 export default function HomeScreen(props) {
     const {navigate} = props.navigation;
@@ -33,6 +31,7 @@ export default function HomeScreen(props) {
 }
 
 const styles = StyleSheet.create({
+
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
