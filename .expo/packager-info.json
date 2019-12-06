@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 3220,
-  "expoServerNgrokUrl": "https://nw-gsf.anonymous.openroadflaskapp2.exp.direct",
-  "packagerNgrokUrl": "https://packager.nw-gsf.anonymous.openroadflaskapp2.exp.direct",
-  "ngrokPid": 1096,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://8y-sxw.anonymous.openroad.exp.direct",
+  "packagerNgrokUrl": "https://packager.8y-sxw.anonymous.openroad.exp.direct",
+  "ngrokPid": 15791,
   "webpackServerPort": null
 }
