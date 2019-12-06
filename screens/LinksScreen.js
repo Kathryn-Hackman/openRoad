@@ -1,32 +1,25 @@
-
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, View, Text, Button} from 'react-native';
-
 import { ExpoLinksView } from '@expo/samples';
-
+import { LinearGradient } from 'expo-linear-gradient';
 import { TextInputBox } from '../components/TextInputBox';
-import { NavigationEvents } from 'react-navigation';
 
 var url = "https://openroadflaskapp.herokuapp.com/";
-
 var startTest = "Syracuse, NY"
 var endTest = "Boston, MA"
 var testType = "rtj"
 var testName = "New Journey 7"
 
-
-
-
-
 import t from 'tcomb-form-native';
+import { NavigationEvents } from 'react-navigation';
 
 const Form = t.form.Form;
 
 const User = t.struct({
-  name: t.String
   start: t.String,
-  destination: t.maybe(t.String),
-  time: t.String
+  destination: t.String,
+  returnToStart: t.Boolean,
+  timeInHours: t.String
 });
 
 const formStyles = {
@@ -66,8 +59,6 @@ const options = {
     },
   },
   stylesheet: formStyles,
-
-  
 };
 
 export default class LinksScreen extends Component {
@@ -77,9 +68,10 @@ export default class LinksScreen extends Component {
       console.log('value: ', value);
   
       console.log("Creating New Journey...");
-       console.log(url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.end)+"&type="+encodeURIComponent("rtj")+"&name="+encodeURIComponent(value.name));
+      const jtype = value.returnToStart?'rtj':'otj';
+      console.log(url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.destination)+"&type="+encodeURIComponent(jtype)+"&name="+encodeURIComponent('new journey'));
 fetch(
-	url+'newJourney?start='+encodeURIComponent(start)+"&end="+encodeURIComponent(end)+"&type="+encodeURIComponent("rtj")+"&name="+encodeURIComponent(name)
+	url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.destination)+"&type="+encodeURIComponent(jtype)+"&name="+encodeURIComponent('new journey')
 )
 	.then(res => res.json())
 	.then(json => {
@@ -96,7 +88,7 @@ fetch(
   
   render() {
     return (
-      <View style={styles.container}>
+        <LinearGradient colors = {['#00ecff', '#1b97a1']} style ={{flex:1}}>
         <Form 
           ref={c => this._form = c}
           type={User} 
@@ -106,7 +98,7 @@ fetch(
           title="Create Journey!"
           onPress={this.handleSubmit}
         />
-      </View>
+      </LinearGradient>
     );
   }
 }
@@ -116,6 +108,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     padding: 20,
-    backgroundColor: '#b0e0e6',
+
+    backgroundColor: '#ffffff',
   },
 });
