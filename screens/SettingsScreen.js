@@ -1,31 +1,25 @@
 //user interests screen irl
-
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import { Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { CheckBox } from 'react-native-elements';
+
+import '@expo/vector-icons';
 
 export default function SettingsScreen() {
-  
+  state = {
+    checked: false,
+  };
   return (
-    <ScrollView style={styles.container}>
-      <ScrollView style={styles.interestsButton}>
-        <Text>Interest 1</Text>
-      </ScrollView>
-      <ScrollView style={styles.interestsButton}>
-        <Text>Interest 2</Text>
-      </ScrollView>
-      <ScrollView style={styles.interestsButton}>
-        <Text>Interest 3</Text>
-      </ScrollView>
-      <ScrollView style={styles.interestsButton}>
-        <Text>Interest 4</Text>
-      </ScrollView>
-      <ScrollView style={styles.interestsButton}>
-        <Text>Interest 5</Text>
-      </ScrollView>
-      <ScrollView style={styles.interestsButton}>
-        <Text>Interest 6</Text>
-      </ScrollView>
+    <ScrollView>
+      <Text>What are your interests?</Text>
+      <View style = {{ flexDirection: 'row'}}>
+        <CheckBox
+          checked ={this.state.checked}
+          onPress ={() => this.setState({checked: !this.state.checked})}
+        />
+        <Text style = {{marginTop: 17}}>Hiking</Text>
+      </View>
     </ScrollView>
   );
 }
@@ -37,7 +31,7 @@ const styles = StyleSheet.create ({
   container: {
     flex: 1,
     //flexDirection: 'row',
-    backgroundColor: '#000000',
+    backgroundColor: 'white',
 },
 interestsButton: {
   //paddingTop: 0.2,
@@ -53,5 +47,5 @@ interestsButton: {
 })
 
 SettingsScreen.navigationOptions = {
-  title: 'I am interested in...',
+  title: 'Open Road',
 };

@@ -16,6 +16,7 @@ const MainNavigator = createStackNavigator({
   Home: {screen: HomeScreen},
   Links: {screen: LinksScreen},
   Interests: {screen: SettingsScreen},
+  Preview: {screen: PreviewScreen},
 });
 
 const HomeStack = createStackNavigator(

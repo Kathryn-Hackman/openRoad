@@ -1,44 +1,47 @@
 import * as WebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { NavigationEvents } from 'react-navigation';
 import { constants } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 
 function Seperator(){
   return <View style={styles.separator} />;
 }
 
 export default function HomeScreen(props) {
-  // render() {
     const {navigate} = props.navigation;
-    const gradientHeight = 900;
-    const gradientBackground = 'rgb(37, 151, 160)';
-    const data = Array.from({ length: gradientHeight });
     return (
-      <View style={{flex:1}}>
- 
+      <LinearGradient colors = {['#00ecff', '#1b97a1']} style ={{flex:1}}>
+        <View style = {styles.container}>
+        <Image source = {require('../assets/images/orlogo.png')}></Image>
+        </View>
         <ActionButton>
           <ActionButton.Item buttonColor='#9b59b6' title="New Journey" onPress={() => navigate('Links')}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+          <ActionButton.Item buttonColor='#3498db' title="Saved Journey 1" onPress={() => navigate('Interests')}>
             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
-            <Icon name="md-done-all" style={styles.actionButtonIcon} />
-          </ActionButton.Item>
         </ActionButton>
-      </View>
+      </LinearGradient>
     );
-  // }
-}const styles = StyleSheet.create({
+}
+
+const styles = StyleSheet.create({
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
     color: 'white',
   },
+
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: '80%',
+  }
 });
