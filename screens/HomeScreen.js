@@ -16,7 +16,7 @@ export default function HomeScreen(props) {
     return (
       <LinearGradient colors = {['#00ecff', '#1b97a1']} style ={{flex:1}}>
         <View style = {styles.container}>
-        <Image source = {require('../assets/images/orlogo.png')}></Image>
+        <Image source = {require('../assets/images/finaldarklogo.png')} style = {{width: 200, height: 200}}></Image>
         </View>
         <ActionButton>
           <ActionButton.Item buttonColor='#9b59b6' title="New Journey" onPress={() => navigate('Links')}>
