@@ -1,14 +1,25 @@
 import React from 'react';
 import { TextInput, Text, View, StyleSheet } from 'react-native';
 
+
+
 export class TextInputBox extends React.Component  {
   state = {
     text: ''
   };
+
+  //label = "start";
+  changeTexts(textVal){
+  	this.setState({textVal})
+  	this.props.handler(textVal);
+  }
+
+
   //label = "starti";
 //dataDetectorTypes 'address'
 //autoCompleteType 'street-address'
 //onSubmitEditing {nativeEvent: {text, eventCount, target}}
+
   render(){
     return (
 		<View style={styles.container}>
@@ -16,7 +27,9 @@ export class TextInputBox extends React.Component  {
 		  <TextInput
       placeholder='enter address'
 			value={this.state.text}
-			onChangeText={text => this.setState({ text })}
+			onChangeText={
+				this.changeTexts(this.state.text)
+			}
 		  />
 		  
 		</View>

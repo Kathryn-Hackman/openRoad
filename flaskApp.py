@@ -4,8 +4,10 @@ from flask import request
 import requests
 import json
 
-app = Flask(__name__)
+flaskAppRunner = Flask(__name__)
 
+if __name__ == '__main__':
+    flaskAppRunner.run()
 
 def testReqs():
 	print("i am here 0")
@@ -18,7 +20,7 @@ def testReqs():
 	uri = "https://maps.googleapis.com/maps/api/directions/json?"
 	ret = requests.get(uri+"origin="+origin+"&destination="+destination+"&key="+key)
 	print(ret.content)
-	return ret
+	#return ret
 testReqs()
 
 @app.route("/")

@@ -1,5 +1,7 @@
-import React from 'react';
-import { Button, Text, ScrollView, StyleSheet } from 'react-native';
+
+import React, { Component } from 'react';
+import { ScrollView, StyleSheet, View, Text, Button} from 'react-native';
+
 import { ExpoLinksView } from '@expo/samples';
 
 import { TextInputBox } from '../components/TextInputBox';
@@ -12,11 +14,70 @@ var endTest = "Boston, MA"
 var testType = "rtj"
 var testName = "New Journey 7"
 
+
+
+
+
+import t from 'tcomb-form-native';
+
+const Form = t.form.Form;
+
+const User = t.struct({
+  name: t.String
+  start: t.String,
+  destination: t.maybe(t.String),
+  time: t.String
+});
+
+const formStyles = {
+  ...Form.stylesheet,
+  formGroup: {
+    normal: {
+      marginBottom: 10
+    },
+  },
+  controlLabel: {
+    normal: {
+      color: 'blue',
+      fontSize: 18,
+      marginBottom: 7,
+      fontWeight: '600'
+    },
+    // the style applied when a validation error occours
+    error: {
+      color: 'red',
+      fontSize: 18,
+      marginBottom: 7,
+      fontWeight: '600'
+    }
+  }
+}
+
+const options = {
+  fields: {
+    email: {
+      error: 'Without an email address how are you going to reset your password when you forget it?'
+    },
+    password: {
+      error: 'Choose something you use on a dozen other sites or something you won\'t remember'
+    },
+    terms: {
+      label: 'Agree to Terms',
+    },
+  },
+  stylesheet: formStyles,
+
   
-function createNewJourney(navigate,start,end,type,name) {
+};
+
+export default class LinksScreen extends Component {
+  handleSubmit = () => {
+      const {navigate} = this.props.navigation;
+      const value = this._form.getValue();
+      console.log('value: ', value);
   
-console.log("Creating New Journey...");
-console.log(url+'newJourney?start='+encodeURIComponent(start)+"&end="+encodeURIComponent(end)+"&type="+encodeURIComponent("rtj")+"&name="+encodeURIComponent(name));
+      console.log("Creating New Journey...");
+       console.log(url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.end)+"&type="+encodeURIComponent("rtj")+"&name="+encodeURIComponent(value.name));
 fetch(
 	url+'newJourney?start='+encodeURIComponent(start)+"&end="+encodeURIComponent(end)+"&type="+encodeURIComponent("rtj")+"&name="+encodeURIComponent(name)
 )
@@ -32,28 +93,29 @@ fetch(
 	});
 }
 
-
-export default function LinksScreen(props) {
-const {navigate} = props.navigation;
-const passParams = {waypoints:'["Boston, MA","Syracuse, NY"]'}
-  return (
-    <ScrollView style={styles.container}>
-				<TextInputBox label='Start'></TextInputBox>
-				<TextInputBox label='Destination'></TextInputBox>
-
-				<Button title = 'Create New Journey!' onPress={() => createNewJourney(navigate,startTest,endTest,testType,testName)}/>
-    </ScrollView>
-  );
+  
+  render() {
+    return (
+      <View style={styles.container}>
+        <Form 
+          ref={c => this._form = c}
+          type={User} 
+          options={options}
+        />
+        <Button
+          title="Create Journey!"
+          onPress={this.handleSubmit}
+        />
+      </View>
+    );
+  }
 }
-//button onpress - send to backend
-LinksScreen.navigationOptions = {
-  title: 'New Journey',
-};
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-	paddingTop: 20,
-	paddingLeft: 20,
+    justifyContent: 'center',
+    marginTop: 50,
+    padding: 20,
     backgroundColor: '#b0e0e6',
   },
 });
