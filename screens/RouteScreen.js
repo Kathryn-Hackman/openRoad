@@ -33,8 +33,8 @@ export default function RouteScreen(props){
         //console.log("pushing TravelTime:");
 
           waypointBlocks.push(
-                      <TravelTime start={waypoints.slice(0,i+1)}
-                      end={waypoints.slice(i+1)}
+                      <TravelTime startList={waypoints.slice(0,i+1)}
+                      endList={waypoints.slice(i+1)}
                       time="sdfsf"
                       navigation={props.navigation}
                       wholeParams={wholeParams}></TravelTime>

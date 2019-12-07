@@ -101,7 +101,11 @@ export class TravelTime extends React.Component {//same as TravelTimeTwo but cap
   loadData(startList,endList) {
     const url = "https://openroadflaskapp.herokuapp.com/";
     var start = startList[startList.length-1];
+    console.log("START VAAAAAAL")
+    console.log(start)
     var end = endList[0];
+    console.log("END VAAAAAAL")
+    console.log(end)
     const fullUrl = url+'driveTime?start='+encodeURIComponent(start.addr)+"&end="+encodeURIComponent(end.addr)
     var promise = new Promise((resolve, reject) => { 
     fetch(fullUrl)
@@ -126,7 +130,7 @@ export class TravelTime extends React.Component {//same as TravelTimeTwo but cap
     //console.log('This happens 3rd.');
 
     this.setState({ loading: 'true' });
-    this.loadData(this.props.start,this.props.end)
+    this.loadData(this.props.startList,this.props.endList)
     .then((data) => {
       //console.log('This happens 7th.');
       this.setState({
@@ -152,7 +156,7 @@ export class TravelTime extends React.Component {//same as TravelTimeTwo but cap
     //console.log('This happens 8th - after I get data.');
     return (
     <View>
-      <Button title = {"Travel time: " + this.state.data + " seconds. (Click to add a stop!)"} onPress={() => this.props.navigation.navigate('Settings',{wholeParams:this.props.wholeParams,startList:this.props.start,endList:this.props.end})}/>
+      <Button title = {"Travel time: " + this.state.data + " seconds. (Click to add a stop!)"} onPress={() => this.props.navigation.navigate('Settings',{wholeParams:this.props.wholeParams,startList:this.props.startList,endList:this.props.endList})}/>
       
     </View>
     );
