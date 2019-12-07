@@ -69,19 +69,24 @@ export default class LinksScreen extends Component {
   
       console.log("Creating New Journey...");
       const jtype = value.returnToStart?'rtj':'otj';
-      console.log(url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.destination)+"&type="+encodeURIComponent(jtype)+"&name="+encodeURIComponent('new journey'));
+      const fullUrl = url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.destination)+"&type="+encodeURIComponent(jtype)+"&name="+encodeURIComponent(value.start + " to " + value.destination)+"&time="+encodeURIComponent(value.timeInHours*3600)
+      console.log(fullUrl);
 fetch(
-	url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.destination)+"&type="+encodeURIComponent(jtype)+"&name="+encodeURIComponent('new journey')
+	fullUrl
 )
 	.then(res => res.json())
 	.then(json => {
 		console.log("Call response:");
 		console.log(json);
 		console.log("New Journey Created.");
-		console.log({waypoints:'["Boston, MA","Syracuse, NY"]'});
-		console.log({waypoints:JSON.stringify(json["waypoints"])});
-		passParams = {waypoints:JSON.stringify(json["waypoints"])};
-		navigate('Route',passParams);
+		//console.log({waypoints:'["Boston, MA","Syracuse, NY"]'});
+		//console.log({waypoints:JSON.stringify(json["waypoints"])});
+		newJourneyParams = json;
+    //newJourneyParams should be a Journey json, meaning that it has a name, a time, and a list of waypoints (possibly also a rtj tag, but not currently needed)
+    //each waypoint should have a name, address, lat, lng, time, and interest
+		console.log("NEW JOURNEY PARAMS")
+    console.log(newJourneyParams)
+    navigate('Route',newJourneyParams);
 	});
 }
 

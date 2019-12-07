@@ -13,7 +13,7 @@ import RouteScreen from '../screens/RouteScreen';
 const MainNavigator = createStackNavigator({
   Home: {screen: HomeScreen},
   Links: {screen: LinksScreen},
-  Interests: {screen: SettingsScreen},
+  Settings: {screen: SettingsScreen},
   Preview: {screen: PreviewScreen},
   Route: {screen: RouteScreen}
 
