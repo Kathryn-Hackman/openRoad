@@ -54,7 +54,7 @@ export class InterestButton extends React.Component  {
         //var passStringify = JSON.stringify(startList.concat(newWaypoints).concat(endList));
         //console.log("passStringify: " + passStringify);
         //var passParams = {waypoints:passStringify};
-        wholeParams.waypoints = newWaypoints;
+        this.props.wholeParams.waypoints = newWaypoints;
         //console.log("WHOLE PARAMS FROM ROUTE COMPONENT");
         //console.log(wholeParams)
         console.log("Navigating away..............................");
