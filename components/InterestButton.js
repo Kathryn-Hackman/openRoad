@@ -1,5 +1,7 @@
 import React from 'react';
 import { TextInput, Text, Dimensions, View, StyleSheet, Button, TouchableOpacity} from 'react-native';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export class InterestButton extends React.Component  {
     
@@ -23,8 +25,7 @@ export class InterestButton extends React.Component  {
   }
 
 
-    handlePress(){
-        const interest = this.props.interest;
+    handlePress(interest){
         const wholeParams = this.props.wholeParams;
         const start = this.props.startList[this.props.startList.length-1];
         const end = this.props.endList[0];
@@ -47,13 +48,18 @@ export class InterestButton extends React.Component  {
 
     render(){
     
-    const interest = this.props.interest;
+    const interest1 = this.props.interest1;
+    const interest2 = this.props.interest2;
+
 
 
     return (
-		<View>
-		  <Button title = {this.props.interest} onPress = {() => this.handlePress()}></Button> 
-		</View>
+        <View style={styles.container}>
+        <ActionButton buttonTextStyle = {styles.actionButtonText} size = {90} buttonText = {interest1} position = 'left' buttonColor="#FFCE07" onPress = {() => this.handlePress(interest2)}>
+        </ActionButton>
+        <ActionButton buttonTextStyle = {styles.actionButtonText} size = {90} buttonText = {interest2} buttonColor="#FFCE07" onPress = {() => this.handlePress(interest2)}>
+        </ActionButton>
+      </View>
     );
   }
 }
@@ -62,17 +68,18 @@ const { height } = Dimensions.get('window');
 const { width } = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
-interestsButton: {
-    //paddingTop: 0.2,
-    flexDirection: 'row',
-    marginTop: 0.05 * height,
-    marginLeft: 0.08 * width,
-    height: height * 0.09,
-    width: height * 0.09,
-    borderRadius: height * 0.09,
-    backgroundColor: 'rgb(195,125,198)',
-  },
-})
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 10
+    },
+    actionButtonText: {
+        color: 'black',
+        fontSize: 11
+    }
+});
 
 
   

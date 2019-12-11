@@ -1,35 +1,38 @@
 //user interests screen irl
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { View, Text, ScrollView, StyleSheet, Dimensions, Button, Image } from 'react-native';
 import { InterestButton } from '../components/InterestButton';
 import '@expo/vector-icons';
-
-
-
+import { LinearGradient } from 'expo-linear-gradient';
+import { NavigationEvents, NavigationActions, createAppContainer } from 'react-navigation';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import t from 'tcomb-form-native';
 
 export default function SettingsScreen(props) {
 
-
-
-
-  var interestList = ['Hiking','Museum','Restaurant','Fun','Gas','Coffee','Shopping'];
+  var interestList = ['Hiking','Museum','Restaurant', 'Shopping', 'Coffee Shop', 'Gas Station'];
+  //var interestList = ['one', 'two', 'three', 'four'];
   var buttonList = [];
-console.log(props.navigation.state.params.startList);
-
-  for (let i = 0; i < interestList.length; i++) {
+  for (let i = 0; i < interestList.length; i+=2) {
     buttonList.push(
-      <InterestButton navigation={props.navigation} interest = {interestList[i]} wholeParams = {props.navigation.state.params.wholeParams} startList = {props.navigation.state.params.startList} endList = {props.navigation.state.params.endList}></InterestButton>
+      <InterestButton key = {interestList[i] + interestList[i+1]} interest1 ={interestList[i]} interest2={interestList[i+1]} wholeParams = {props.navigation.state.params.wholeParams} startList = {props.navigation.state.params.startList} endList = {props.navigation.state.params.endList}></InterestButton>
     )
   }
+
+const {navigate} = props.navigation;
   return (
-    <ScrollView>
-      <Text>What are your interests?</Text>
-      {buttonList}
-      <View style = {{ flexDirection: 'row'}}>
+    <LinearGradient colors = {['#00ecff', '#1b97a1']} style ={{flex:1}}>
+      <View style = {styles.container}>
       </View>
-    </ScrollView>
+      <Text style = {styles.text}>Which type of waypoint would you like to add?</Text>
+      <View style = {styles.viewHeight}>
+      {buttonList}
+      </View>
+      <View>
+        <Text style = {styles.middleText}> ------- or -------</Text>
+      </View>
+    </LinearGradient>
   );
 }
 
@@ -38,10 +41,28 @@ const { width } = Dimensions.get('screen');
 
 const styles = StyleSheet.create ({
   container: {
-    flex: 1,
     //flexDirection: 'row',
     backgroundColor: 'white',
 },
+  text: {
+    justifyContent: 'center',
+    fontSize: 20,
+    paddingTop: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    fontFamily: 'work-sans',
+    color: 'black'
+  },
+
+  viewHeight: {
+    height: 450,
+  },
+
+  middleText: {
+    fontSize: 20,
+    justifyContent: 'center',
+    fontFamily: 'work-sans'
+  }
 
 })
 
