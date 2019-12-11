@@ -31,10 +31,10 @@ const formStyles = {
   },
   controlLabel: {
     normal: {
-      color: 'blue',
+      color: 'black',
       fontSize: 18,
       marginBottom: 7,
-      fontWeight: '600'
+      fontWeight: '600',
     },
     // the style applied when a validation error occours
     error: {

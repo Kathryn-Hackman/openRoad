@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 import { ExpoLinksView } from '@expo/samples';
 import { TextInputBox } from '../components/TextInputBox';
@@ -9,32 +9,78 @@ import  { Marker } from 'react-native-maps';
 //to get the user's current location
 //Geolocation.getCurrentPosition(info => console.log(info));
 
+function getMarkers(props) {
+  const {params} = props.navigation.state;
+  var waypointMarkerColor = '#0000FF';
+  var startMarkerColor = '#008000';
+  var endMarkerColor = '#FF0000';
+  markers = [];
+  for (i = 0; i < params.waypoints.length; i++) {
+    markers.push(
+      <Marker key = {params.waypoints[i].name} style = {styles.mapMarker}
+        pinColor= { startMarkerColor }
+        coordinate={{latitude: params.waypoints[i].lat, longitude: params.waypoints[i].lng}}
+        title={params.waypoints[i].name}
+        description={params.waypoints[i].addr}
+      />
+    )
+    
+  }
+  return markers;
+}
+
+function averageMaxMinLat(props) {
+  const {waypoints} = props.navigation.state.params;
+  var minLat = parseFloat(waypoints[0].lat);
+  var minLng = parseFloat(waypoints[0].lng);
+  var maxLat = parseFloat(waypoints[0].lat);
+  var maxLng = parseFloat(waypoints[0].lng);
+
+  for (i = 0; i < waypoints.length; i++){
+    if (parseFloat(waypoints[i].lat) < minLat){
+      minLat = parseFloat(waypoints[i].lat);
+    }
+    if (parseFloat(waypoints[i].lat) > maxLat){
+      maxLat = parseFloat(waypoints[i].lat);
+    }
+    if (parseFloat(waypoints[i].lng) < minLng){
+      minLng = parseFloat(waypoints[i].lng);
+    }
+    if (parseFloat(waypoints[i].lng) > maxLng){
+      maxLng = parseFloat(waypoints[i].lng);
+    }
+  }
+  var centerLat = (minLat + maxLat) /2;
+  var centerLng = (minLng + maxLng) /2;
+
+  var diffLat = Math.abs(maxLat - minLat)*1.3;
+  var diffLng = Math.abs(maxLng - minLng)*1.3;
+
+  return [centerLat, centerLng, diffLat, diffLng];
+
+}
 
 export default function PreviewScreen(props){
-    var waypointMarkerColor = '#0000FF';
-    var startMarkerColor = '#008000';
-    var endMarkerColor = '#FF0000';
     var parametersFromPrevPage = props.navigation.state.params;
     console.log(parametersFromPrevPage.lat);
     console.log(parametersFromPrevPage.long);
 
+    var values = averageMaxMinLat(props);
     
       return (
         <MapView
           style ={styles.map}
           region={{
-            latitude: parametersFromPrevPage.lat,
-            longitude: parametersFromPrevPage.long,
-            latitudeDelta:0.0922,
-            longitudeDelta:.0421,
+            latitude: values[0],
+            longitude: values[1],
+            latitudeDelta: values[2],
+            longitudeDelta: values[3],
           }}
-        >
-          <Marker style = {styles.mapMarker}
-            pinColor= { startMarkerColor }
-            coordinate={{latitude:42.34817, longitude:-71.106972}}
-            title={"Start"}
-            description={"marker for the start point"}
-          />
+        > 
+        {getMarkers(props)}
+        <TouchableOpacity onPress={() => props.navigation.navigate('Route', parametersFromPrevPage)}>
+          <Text>Return to Route</Text>
+        </TouchableOpacity>
         </MapView>
   ); 
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Text, View, StyleSheet, ScrollView} from 'react-native';
+import { Button, Text, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { TextInputBox } from '../components/TextInputBox';
 import { NavigationEvents } from 'react-navigation';
@@ -119,6 +119,7 @@ componentWillUnmount() {
           <Text>{params.name}</Text>
           <Text>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} hours out of {this.secToHour(params.time)} hours</Text>
           {waypointsBlocksRetVal[0]}
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Preview', params)}><Text>Show Map Overview</Text></TouchableOpacity>
         </ScrollView>
 
       </View>

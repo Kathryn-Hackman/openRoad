@@ -1,12 +1,11 @@
 //user interests screen irl
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import { View, Text, ScrollView, StyleSheet, Dimensions, Button, Image } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 import { InterestButton } from '../components/InterestButton';
 import '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationEvents, NavigationActions, createAppContainer } from 'react-navigation';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import t from 'tcomb-form-native';
 
 export default function SettingsScreen(props) {
