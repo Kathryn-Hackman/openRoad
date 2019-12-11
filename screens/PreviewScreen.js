@@ -91,7 +91,7 @@ export default function PreviewScreen(props){
         > 
         {getMarkers(props)}
         <TouchableOpacity onPress={() => Linking.openURL(fullRouteUrl)}>
-          <Text>Return to Route</Text>
+          <Text>Open Journey in Google Maps</Text>
         </TouchableOpacity>
         </MapView>
   ); 

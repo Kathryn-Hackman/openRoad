@@ -19,7 +19,9 @@ export default class RouteScreen extends Component {
   }
 
   secToHour(x){
-    return Number.parseFloat(x/3600).toFixed(2);
+    var h = Math.floor(x / 3600); 
+    var m = Math.floor(x % 3600 / 60);
+    return h + ' hour' + (h!=1?('s'):('')) + (m!=0?( ' and ' + m + ' minutes' ):(''));
   }
 
   add(accumulator, a) {
@@ -117,7 +119,7 @@ componentWillUnmount() {
       <View>
         <ScrollView>
           <Text>{params.name}</Text>
-          <Text>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} hours out of {this.secToHour(params.time)} hours</Text>
+          <Text>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} out of {this.secToHour(params.time)}</Text>
           {waypointsBlocksRetVal[0]}
           <TouchableOpacity onPress={() => this.props.navigation.navigate('Preview', params)}><Text>Show Map Overview</Text></TouchableOpacity>
         </ScrollView>

@@ -18,7 +18,11 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
 
 
   }
-
+  secToHour(x){
+    var h = Math.floor(x / 3600); 
+    var m = Math.floor(x % 3600 / 60);
+    return h + ' hour' + (h!=1?('s'):('')) + (m!=0?( ' and ' + m + ' minutes' ):(''));
+  }
   
   loadData(startList,endList) {
     const url = "https://openroadflaskapp.herokuapp.com/";
@@ -79,7 +83,7 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
 
     return (
     <View>
-      <Button title = {this.props.keyString + " Travel time: " + (this.state.data/3600) + " hours. (Click to add a stop!)"} onPress={() => this.props.navigation.navigate('Settings',{wholeParams:this.props.wholeParams,startList:this.props.startList,endList:this.props.endList})}/>
+      <Button title = {this.props.keyString + " Travel time: " + this.secToHour(this.state.data) + ". (Click to add a stop!)"} onPress={() => this.props.navigation.navigate('Settings',{wholeParams:this.props.wholeParams,startList:this.props.startList,endList:this.props.endList})}/>
       
     </View>
     );

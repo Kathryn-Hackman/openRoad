@@ -15,7 +15,7 @@ import { Text } from 'react-native-elements';
 export default function HomeScreen(props) {
     const {navigate} = props.navigation;
     return (
-      <LinearGradient colors = {['#00ecff', '#1b97a1']} style ={{flex:1}}>
+      <LinearGradient colors = {['#ff9800', '#ffce07']} style ={{flex:1}}>
         <View style = {styles.container}>
         <Image source = {require('../assets/images/finaldarklogo.png')} style = {{width: 200, height: 200}}></Image>
         <Text></Text>
