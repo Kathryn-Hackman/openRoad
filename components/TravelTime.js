@@ -101,7 +101,12 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
 
     if (this.state.loading === 'true') {
       //console.log('This happens 5th - when waiting for data.');
-      return <Text>Loading...</Text>;
+      <View style={{alignSelf:"flex-end", marginLeft:'23%', }}>
+        <Text style = {this.styles.body}>Travel time: loading </Text>
+        <TouchableOpacity style = {this.styles.buttonStyle}>
+          <Text style = {this.styles.textStyle}>Add a stop</Text>
+        </TouchableOpacity>
+      </View>
     }
 
     //console.log('This happens 8th - after I get data.');
