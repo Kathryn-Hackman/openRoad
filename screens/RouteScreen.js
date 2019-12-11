@@ -67,7 +67,7 @@ export default class RouteScreen extends Component {
     for(let i = 0; i < waypoints.length; i++){
 
       waypointBlocks.push(
-        <Waypoint key={waypoints[i].name} location={waypoints[i]}></Waypoint>
+        <Waypoint key={waypoints[i].name} location={waypoints[i]} index={i} wholeParams={wholeParams} navigation={props.navigation}></Waypoint>
       )
       travelTimeEstimate += waypoints[i].time;
       if(i!=waypoints.length - 1){
@@ -146,7 +146,7 @@ styles = StyleSheet.create({
           <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5}}>Estimated Trip Time:</Text>
           <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5}}>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} / {this.secToHour(params.time)}</Text>
           {waypointsBlocksRetVal[0]}
-          <TouchableOpacity style = {this.styles.buttonStyle} onPress={() => this.props.navigation.navigate('Preview', params)}>
+        <TouchableOpacity style = {this.styles.buttonStyle} onPress={() => this.props.navigation.navigate('Preview', params)}>
           <Text style = {this.styles.textStyle}>Show Map Overview</Text>
         </TouchableOpacity>
         </ScrollView>

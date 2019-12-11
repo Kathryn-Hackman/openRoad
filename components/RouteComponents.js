@@ -13,6 +13,28 @@ export class Waypoint extends React.Component  {
     return (h + 'h' + ' ' + m + 'm');
   }
 
+  removeSelf(props){
+    const {wholeParams} = props;
+    const {index} = props;
+    waypointsBefore = wholeParams.waypoints.slice(0,index);
+    waypointsAfter = wholeParams.waypoints.slice(index+1);
+    console.log(waypointsBefore)
+    console.log(waypointsAfter)
+    console.log(wholeParams)
+    wholeParams.waypoints = waypointsBefore.concat(waypointsAfter);
+    console.log(wholeParams)
+    props.navigation.navigate('Route',{wholeParams})
+
+  }
+
+  ifNotFinal(index, len, props){
+        if(index!=0 && index !=len-1){
+          return(<TouchableOpacity onPress={() => this.removeSelf(props)}>
+          <Text>X</Text>
+        </TouchableOpacity>)
+        }
+  }
+
 
 
   render(){
@@ -24,13 +46,14 @@ export class Waypoint extends React.Component  {
           <View style={styles.box}>
             <Text style={styles.title}>{location.name}</Text>
           </View>
-
         </View>
 
         <View style = {styles.body}>
           <Text style = {styles.addr}>{location.addr}</Text>
           <Text style = {styles.timeSpent}>Time spent here: {this.secToHour(location.time)}</Text>
         </View>
+
+        {this.ifNotFinal(this.props.index, this.props.wholeParams.waypoints.length, this.props)}
 
       </View>
     );
