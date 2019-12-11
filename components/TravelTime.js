@@ -21,7 +21,7 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
   secToHour(x){
     var h = Math.floor(x / 3600); 
     var m = Math.floor(x % 3600 / 60);
-    return h + ' hour' + (h!=1?('s'):('')) + (m!=0?( ' and ' + m + ' minutes' ):(''));
+    return (h + 'h' + ' ' + m + 'm');
   }
   
   loadData(startList,endList) {
@@ -65,6 +65,31 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
     this._isMounted = false;
   }
 
+  styles = StyleSheet.create({
+  buttonStyle: {
+    backgroundColor:'#ff9800',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff'
+
+  },
+  textStyle: {
+    fontFamily: 'work-sans',
+    color: 'white',
+    fontSize: 10,
+    textAlign: 'center',
+    justifyContent: 'center'
+  },
+  body: {
+    marginTop: 10,
+    fontFamily: 'work-sans',
+    color: '#eef9fe',
+    fontSize: 10,
+    color: '#eef9fe'
+
+  },
+})
+
 
   render() {
 
@@ -82,10 +107,15 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
     //console.log('This happens 8th - after I get data.');
 
     return (
-    <View>
-      <Button title = {this.props.keyString + " Travel time: " + this.secToHour(this.state.data) + ". (Click to add a stop!)"} onPress={() => this.props.navigation.navigate('Settings',{wholeParams:this.props.wholeParams,startList:this.props.startList,endList:this.props.endList})}/>
-      
+    <View style = {{flexDirection:'row'}}>
+      <View style={{alignSelf:"flex-end", marginLeft:'23%', }}>
+        <Text style = {this.styles.body}>Travel time: {this.secToHour(this.state.data)} </Text>
+        <TouchableOpacity style = {this.styles.buttonStyle} onPress={() => this.props.navigation.navigate('Settings',{wholeParams:this.props.wholeParams,startList:this.props.startList,endList:this.props.endList})}>
+          <Text style = {this.styles.textStyle}>Add a stop</Text>
+        </TouchableOpacity>
+      </View>
     </View>
+
     );
   }
 }

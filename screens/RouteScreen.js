@@ -21,7 +21,7 @@ export default class RouteScreen extends Component {
   secToHour(x){
     var h = Math.floor(x / 3600); 
     var m = Math.floor(x % 3600 / 60);
-    return h + ' hour' + (h!=1?('s'):('')) + (m!=0?( ' and ' + m + ' minutes' ):(''));
+    return (h + 'h' + ' ' + m + 'm');
   }
 
   add(accumulator, a) {
@@ -141,9 +141,10 @@ styles = StyleSheet.create({
     return (
       <View style = {{height: '100%', backgroundColor: '#ffce07'}}>
         <ScrollView>
-        <View><Text style = {{fontFamily: 'work-sans', fontSize: 20, alignItems: 'center', justifyContent: 'center', textAlign: 'center'}}>Edit Journey</Text></View>
-          <Text>{params.name}</Text>
-          <Text>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} out of {this.secToHour(params.time)}</Text>
+        <View><Text style = {{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5, paddingTop:8}}>Edit Journey</Text></View>
+          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5}}>{params.name}</Text>
+          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5}}>Estimated Trip Time:</Text>
+          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5}}>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} / {this.secToHour(params.time)}</Text>
           {waypointsBlocksRetVal[0]}
           <TouchableOpacity style = {this.styles.buttonStyle} onPress={() => this.props.navigation.navigate('Preview', params)}>
           <Text style = {this.styles.textStyle}>Show Map Overview</Text>

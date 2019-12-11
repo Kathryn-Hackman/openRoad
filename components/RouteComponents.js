@@ -10,7 +10,7 @@ export class Waypoint extends React.Component  {
   secToHour(x){
     var h = Math.floor(x / 3600); 
     var m = Math.floor(x % 3600 / 60);
-    return h + ' hour' + (h!=1?('s'):('')) + (m!=0?( ' and ' + m + ' minutes' ):(''));
+    return (h + 'h' + ' ' + m + 'm');
   }
 
 
@@ -28,9 +28,8 @@ export class Waypoint extends React.Component  {
         </View>
 
         <View style = {styles.body}>
-          <Text>{location.addr}</Text>
-          <Text>Time spent here:</Text>
-          <Text>{this.secToHour(location.time)}</Text>
+          <Text style = {styles.addr}>{location.addr}</Text>
+          <Text style = {styles.timeSpent}>Time spent here: {this.secToHour(location.time)}</Text>
         </View>
 
       </View>
@@ -57,6 +56,15 @@ const styles = StyleSheet.create({
     width: '76%',
     marginTop: 10,
     fontFamily: 'work-sans',
+    color: '#eef9fe'
+  },
+  addr: {
+    fontSize: 10,
+    color: '#eef9fe'
+
+  },
+  timeSpent: {
+    fontSize: 12,
     color: '#eef9fe'
   },
   box:{
