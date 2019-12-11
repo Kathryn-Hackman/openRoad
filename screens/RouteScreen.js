@@ -99,6 +99,29 @@ componentWillUnmount() {
    this._isMounted = false;
 }
 
+styles = StyleSheet.create({
+  buttonStyle: {
+    marginTop:20,
+    paddingTop:15,
+    paddingBottom:15,
+    marginLeft:30,
+    marginRight:30,
+    marginBottom: 20,
+    backgroundColor:'#ff9800',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff'
+
+  },
+  textStyle: {
+    fontFamily: 'work-sans',
+    color: 'white',
+    fontSize: 26,
+    textAlign: 'center',
+    justifyContent: 'center'
+  },
+})
+
   render(){
     const {params} = this.props.navigation.state;
 
@@ -116,14 +139,16 @@ componentWillUnmount() {
     var waypointsBlocksRetVal = this.getWaypointBlocks(this.props);
 
     return (
-      <View>
+      <View style = {{height: '100%', backgroundColor: '#ffce07'}}>
         <ScrollView>
+        <View><Text style = {{fontFamily: 'work-sans', fontSize: 20, alignItems: 'center', justifyContent: 'center', textAlign: 'center'}}>Edit Journey</Text></View>
           <Text>{params.name}</Text>
           <Text>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} out of {this.secToHour(params.time)}</Text>
           {waypointsBlocksRetVal[0]}
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Preview', params)}><Text>Show Map Overview</Text></TouchableOpacity>
+          <TouchableOpacity style = {this.styles.buttonStyle} onPress={() => this.props.navigation.navigate('Preview', params)}>
+          <Text style = {this.styles.textStyle}>Show Map Overview</Text>
+        </TouchableOpacity>
         </ScrollView>
-
       </View>
 
     ); 

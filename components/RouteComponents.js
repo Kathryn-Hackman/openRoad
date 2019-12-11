@@ -20,18 +20,15 @@ export class Waypoint extends React.Component  {
     return (
       <View>
         <View style={styles.header}>
-          <View style={{zIndex: 1, position:"absolute"}}><Image source = {require('../assets/images/group_41.png')} style = {{width: 40, height: 40, marginLeft: -20, marginTop: -5}}></Image></View>
+          <View style={{zIndex: 1}}><Image source = {require('../assets/images/group_41.png')} style = {{width: 40, height: 40, marginLeft: -20, marginTop: -5}}></Image></View>
           <View style={styles.box}>
             <Text style={styles.title}>{location.name}</Text>
           </View>
 
         </View>
 
-        <View>
+        <View style = {styles.body}>
           <Text>{location.addr}</Text>
-        </View>
-
-        <View>
           <Text>Time spent here:</Text>
           <Text>{this.secToHour(location.time)}</Text>
         </View>
@@ -55,6 +52,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row',
   },
+  body: {
+    alignSelf: 'flex-end',
+    width: '76%',
+    marginTop: 10,
+    fontFamily: 'work-sans',
+    color: '#eef9fe'
+  },
   box:{
     alignSelf: 'flex-end',
     height: 30,
@@ -71,10 +75,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   title:{
-    fontFamily: "work-sans",
-    fontSize: 20,
+    fontFamily: "work-sans-regular",
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 14,
     textAlign: "left",
+    textAlignVertical: 'center',
+    marginTop: 6,
     color: "#777777",
-    marginLeft: 15
+    marginLeft: 30
   }
 });

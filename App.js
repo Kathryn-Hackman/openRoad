@@ -42,7 +42,8 @@ async function loadResourcesAsync() {
       'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
       'work-sans': require('./assets/fonts/WorkSans-SemiBold.ttf'),
       'lato-bold': require('./assets/fonts/Lato-Bold.ttf'),
-      'lato-light': require('./assets/fonts/Lato-Light.ttf')
+      'lato-light': require('./assets/fonts/Lato-Light.ttf'),
+      'work-sans-regular': require('./assets/fonts/WorkSans-Regular.ttf')
     }),
   ]);
 }
