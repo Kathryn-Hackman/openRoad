@@ -5,6 +5,7 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
   constructor(props) {
     super();
     //console.log('This happens 3rd.');
+    this._isMounted = false;
     this.state = {
       loading: 'initial',
       data: ''
@@ -32,11 +33,6 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
     fetch(fullUrl)
       .then(res => res.json())
       .then(json => {
-        //console.log("THIS HAPPENS SIXTH? Call response:");
-        //console.log(json);
-        //console.log("waypoints found.");
-        //console.log("HERE IS THE TRAVELTIME")
-        //console.log(json.time)
         resolve(json.time);
       });
     });
@@ -47,15 +43,22 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.setState({ loading: 'true' });
     this.loadData(this.props.startList,this.props.endList)
     .then((data) => {
       //console.log('This happens 7th.');
+      console.log("CALLING CALLBACK")
+      this.props.callbackParam(data);
       this.setState({
         data: data,
         loading: 'false'
       });
     });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
 
@@ -76,7 +79,7 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
 
     return (
     <View>
-      <Button title = {this.props.keyString + " Travel time: " + this.state.data + " seconds. (Click to add a stop!)"} onPress={() => this.props.navigation.navigate('Settings',{wholeParams:this.props.wholeParams,startList:this.props.startList,endList:this.props.endList})}/>
+      <Button title = {this.props.keyString + " Travel time: " + (this.state.data/3600) + " hours. (Click to add a stop!)"} onPress={() => this.props.navigation.navigate('Settings',{wholeParams:this.props.wholeParams,startList:this.props.startList,endList:this.props.endList})}/>
       
     </View>
     );
