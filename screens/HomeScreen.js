@@ -9,6 +9,7 @@ import { NavigationEvents, NavigationActions, createAppContainer } from 'react-n
 import { constants } from 'expo';
 import { LinearGradient } from 'expo-linear-gradient';
 import { createStackNavigator } from 'react-navigation-stack';
+import { Text } from 'react-native-elements';
 
 
 export default function HomeScreen(props) {
@@ -17,6 +18,8 @@ export default function HomeScreen(props) {
       <LinearGradient colors = {['#00ecff', '#1b97a1']} style ={{flex:1}}>
         <View style = {styles.container}>
         <Image source = {require('../assets/images/finaldarklogo.png')} style = {{width: 200, height: 200}}></Image>
+        <Text></Text>
+        <Text style = {styles.titleText}>Open Road</Text>
         </View>
         <ActionButton>
           <ActionButton.Item buttonColor='#9b59b6' title="New Journey" onPress={() => navigate('Links')}>
@@ -42,5 +45,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: '80%',
+  },
+  titleText: {
+    fontSize: 30,
+    color: 'white',
+    fontFamily: 'lato-bold',
+    fontSize: 48
   }
 });
