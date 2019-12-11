@@ -116,7 +116,13 @@ fetch(
     return (
         <LinearGradient colors = {['#00ecff', '#1b97a1']} style ={{flex:1}}>
           <View style = {styles.logo}>
-          <Image source = {require('../assets/images/finaldarklogo.png')} style = {{width: 80, height: 80}}></Image>
+          <Image source = {require('../assets/images/finaldarklogo.png')} style = {{width: 90, height: 90}}></Image>
+          </View>
+          <View style = {styles.marker1}>
+          <Image source = {require('../assets/images/marker.png')} style = {{width: 13, height: 20}}></Image>
+          </View>
+          <View style = {styles.marker2}>
+          <Image source = {require('../assets/images/marker.png')} style = {{width: 13, height: 20}}></Image>
           </View>
         <Form 
           ref={c => this._form = c}
@@ -144,6 +150,18 @@ const styles = StyleSheet.create({
     padding: 20,
 
     backgroundColor: '#ffffff',
+  },
+  marker1: {
+    paddingLeft: 115,
+    paddingTop: 148,
+    zIndex: 1,
+    position: 'absolute'
+  },
+  marker2: {
+    paddingLeft: 210,
+    paddingTop: 234,
+    zIndex: 1,
+    position: 'absolute'
   },
   textStyle: {
     paddingTop: 50,

@@ -13,7 +13,7 @@ import { Linking } from 'expo';
 function getMarkers(props) {
   const {params} = props.navigation.state;
   var waypointMarkerColor = '#0000FF';
-  var startMarkerColor = '#008000';
+  var startMarkerColor = '#1B97A1';
   var endMarkerColor = '#FF0000';
   markers = [];
   for (i = 0; i < params.waypoints.length; i++) {
@@ -90,14 +90,33 @@ export default function PreviewScreen(props){
           }}
         > 
         {getMarkers(props)}
-        <TouchableOpacity onPress={() => Linking.openURL(fullRouteUrl)}>
-          <Text>Open Journey in Google Maps</Text>
+        <TouchableOpacity style = {styles.buttonStyle} activeOpacity = {.6} onPress={() => Linking.openURL(fullRouteUrl)}>
+          <Text style = {styles.textStyle}>Open Navigation</Text>
         </TouchableOpacity>
         </MapView>
   ); 
 }
 
 const styles = StyleSheet.create({
+  buttonStyle: {
+    marginTop:10,
+    paddingTop:15,
+    paddingBottom:15,
+    marginLeft:30,
+    marginRight:30,
+    backgroundColor:'#00BCD4',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff'
+
+  },
+  textStyle: {
+    fontFamily: 'work-sans',
+    color: 'white',
+    fontSize: 26,
+    textAlign: 'center',
+    justifyContent: 'center'
+  },
   map: {
     ...StyleSheet.absoluteFillObject,
 }});
