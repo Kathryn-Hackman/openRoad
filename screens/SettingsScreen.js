@@ -16,7 +16,7 @@ export default function SettingsScreen(props) {
   var buttonList = [];
   for (let i = 0; i < interestList.length; i+=2) {
     buttonList.push(
-      <InterestButton key = {interestList[i] + interestList[i+1]} interest1 ={interestList[i]} interest2={interestList[i+1]}></InterestButton>
+      <InterestButton key = {interestList[i] + interestList[i+1]} interest1 ={interestList[i]} interest2={interestList[i+1]} wholeParams = {props.navigation.state.params.wholeParams} startList = {props.navigation.state.params.startList} endList = {props.navigation.state.params.endList}></InterestButton>
     )
   }
 

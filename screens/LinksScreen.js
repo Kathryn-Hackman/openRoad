@@ -65,23 +65,17 @@ export default class LinksScreen extends Component {
   handleSubmit = () => {
       const {navigate} = this.props.navigation;
       const value = this._form.getValue();
-      console.log('value: ', value);
-  
-      console.log("Creating New Journey...");
-      const jtype = value.returnToStart?'rtj':'otj';
-      console.log(url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.destination)+"&type="+encodeURIComponent(jtype)+"&name="+encodeURIComponent('new journey'));
+
+      const jtype = value.returnToStart?'rtj':'owj';//round trip or one way journey
+      const fullUrl = url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.destination)+"&type="+encodeURIComponent(jtype)+"&name="+encodeURIComponent(value.start + " to " + value.destination)+"&time="+encodeURIComponent(value.timeInHours*3600)
+
 fetch(
-	url+'newJourney?start='+encodeURIComponent(value.start)+"&end="+encodeURIComponent(value.destination)+"&type="+encodeURIComponent(jtype)+"&name="+encodeURIComponent('new journey')
+	fullUrl
 )
 	.then(res => res.json())
 	.then(json => {
-		console.log("Call response:");
-		console.log(json);
-		console.log("New Journey Created.");
-		console.log({waypoints:'["Boston, MA","Syracuse, NY"]'});
-		console.log({waypoints:JSON.stringify(json["waypoints"])});
-		passParams = {waypoints:JSON.stringify(json["waypoints"])};
-		navigate('Route',passParams);
+		newJourneyParams = json;
+    navigate('Route',newJourneyParams);
 	});
 }
 
