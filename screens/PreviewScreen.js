@@ -5,6 +5,7 @@ import { ExpoLinksView } from '@expo/samples';
 import { TextInputBox } from '../components/TextInputBox';
 import { NavigationEvents } from 'react-navigation';
 import  { Marker } from 'react-native-maps';
+import { Linking } from 'expo';
 
 //to get the user's current location
 //Geolocation.getCurrentPosition(info => console.log(info));
@@ -60,8 +61,19 @@ function averageMaxMinLat(props) {
 
 }
 
+function buildFullRouteUrl(props){
+  const {waypoints} = props.navigation.state.params;
+  var url = 'https://maps.google.com/?daddr=';
+  // url += waypoints[0].lat + ',' + waypoints[0].lng;
+  for (i = 1; i < waypoints.length; i++){
+    url += '+to:' + waypoints[i].lat + ',' + waypoints[i].lng;
+}
+return url;
+}
+
 export default function PreviewScreen(props){
     var parametersFromPrevPage = props.navigation.state.params;
+    var fullRouteUrl = buildFullRouteUrl(props);
     console.log(parametersFromPrevPage.lat);
     console.log(parametersFromPrevPage.long);
 
@@ -78,7 +90,7 @@ export default function PreviewScreen(props){
           }}
         > 
         {getMarkers(props)}
-        <TouchableOpacity onPress={() => props.navigation.navigate('Route', parametersFromPrevPage)}>
+        <TouchableOpacity onPress={() => Linking.openURL(fullRouteUrl)}>
           <Text>Return to Route</Text>
         </TouchableOpacity>
         </MapView>
