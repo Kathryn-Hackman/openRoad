@@ -55,7 +55,7 @@ export class InterestButton extends React.Component  {
 
     return (
         <View style={styles.container}>
-        <ActionButton buttonTextStyle = {styles.actionButtonText} size = {90} buttonText = {interest1} position = 'left' buttonColor="#FFCE07" onPress = {() => this.handlePress(interest2)}>
+        <ActionButton buttonTextStyle = {styles.actionButtonText} size = {90} buttonText = {interest1} position = 'left' buttonColor="#FFCE07" onPress = {() => this.handlePress(interest1)}>
         </ActionButton>
         <ActionButton buttonTextStyle = {styles.actionButtonText} size = {90} buttonText = {interest2} buttonColor="#FFCE07" onPress = {() => this.handlePress(interest2)}>
         </ActionButton>
