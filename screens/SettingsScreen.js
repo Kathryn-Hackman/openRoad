@@ -14,7 +14,7 @@ export default function SettingsScreen(props) {
 
 
 
-  var interestList = ['Hiking','Museum','Restaurant'];
+  var interestList = ['Hiking','Museum','Restaurant','Fun','Gas','Coffee','Shopping'];
   var buttonList = [];
 console.log(props.navigation.state.params.startList);
 

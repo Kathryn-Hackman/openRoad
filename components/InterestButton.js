@@ -5,7 +5,6 @@ export class InterestButton extends React.Component  {
     
   findWaypointsOn(startList,endList){
     const url = "https://openroadflaskapp.herokuapp.com/";
-    //console.log("Adding Waypoints...");
     var wholeParams = this.props.wholeParams;
     var start = startList[startList.length-1];
     var end = endList[0];
@@ -16,17 +15,8 @@ export class InterestButton extends React.Component  {
     )
       .then(res => res.json())
       .then(json => {
-        //console.log("Call response:");
-        //console.log(json);
-        //console.log("waypoints found.");
         var newWaypoints = startList.concat(json.waypoints).concat(endList);
-        //var passStringify = JSON.stringify(startList.concat(newWaypoints).concat(endList));
-        //console.log("passStringify: " + passStringify);
-        //var passParams = {waypoints:passStringify};
         wholeParams.waypoints = newWaypoints;
-        //console.log("WHOLE PARAMS FROM ROUTE COMPONENT");
-        //console.log(wholeParams)
-        console.log("Navigating away..............................");
         this.props.navigation.navigate('Settings',wholeParams);
       });
 
@@ -47,17 +37,8 @@ export class InterestButton extends React.Component  {
     fetch(urlWithParams)
       .then(res => res.json())
       .then(json => {
-        //console.log("Call response:");
-        //console.log(json);
-        //console.log("waypoints found.");
         var newWaypoints = this.props.startList.concat(json.waypoints).concat(this.props.endList);
-        //var passStringify = JSON.stringify(startList.concat(newWaypoints).concat(endList));
-        //console.log("passStringify: " + passStringify);
-        //var passParams = {waypoints:passStringify};
-        wholeParams.waypoints = newWaypoints;
-        //console.log("WHOLE PARAMS FROM ROUTE COMPONENT");
-        //console.log(wholeParams)
-        console.log("Navigating away..............................");
+        this.props.wholeParams.waypoints = newWaypoints;
         this.props.navigation.navigate('Route',this.props.wholeParams);
       });
 
