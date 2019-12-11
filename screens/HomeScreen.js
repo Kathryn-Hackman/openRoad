@@ -21,6 +21,9 @@ export default function HomeScreen(props) {
         <Text></Text>
         <Text style = {styles.titleText}>Open Road</Text>
         </View>
+        <View>
+        <Image source = {require('../assets/images/drawable-mdpi/path_244.png')}></Image>
+        </View>
         <ActionButton>
           <ActionButton.Item buttonColor='#9b59b6' title="New Journey" onPress={() => navigate('Links')}>
             <Icon name="md-create" style={styles.actionButtonIcon} />

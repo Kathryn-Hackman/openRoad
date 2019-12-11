@@ -1,7 +1,7 @@
 //user interests screen irl
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import { View, Text, ScrollView, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Dimensions, Button, Image, TouchableOpacity, TextInput } from 'react-native';
 import { InterestButton } from '../components/InterestButton';
 import '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -31,6 +31,11 @@ const {navigate} = props.navigation;
       <View>
         <Text style = {styles.middleText}> ------- or -------</Text>
       </View>
+      <View>
+      <TextInput style = {styles.textInput}>
+          <Text style = {styles.textStyle}>Enter Custom Waypoint:</Text>
+      </TextInput>
+      </View>
     </LinearGradient>
   );
 }
@@ -52,6 +57,10 @@ const styles = StyleSheet.create ({
     fontFamily: 'work-sans',
     color: 'black'
   },
+  textInput: {
+    backgroundColor: 'white',
+    margin: 10
+  },
 
   viewHeight: {
     height: 450,
@@ -60,7 +69,8 @@ const styles = StyleSheet.create ({
   middleText: {
     fontSize: 20,
     justifyContent: 'center',
-    fontFamily: 'work-sans'
+    fontFamily: 'work-sans',
+    textAlign: 'center'
   }
 
 })
