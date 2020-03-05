@@ -75,18 +75,17 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
   },
   textStyle: {
     fontFamily: 'work-sans',
-    color: 'white',
-    fontSize: 10,
+    color: '#eef9fe',
+    fontSize: 12,
     textAlign: 'center',
     justifyContent: 'center'
   },
   body: {
     marginTop: 10,
+    marginBottom: 5,
     fontFamily: 'work-sans',
-    color: '#eef9fe',
-    fontSize: 10,
-    color: '#eef9fe'
-
+    color: '#777777',
+    fontSize: 12
   },
 })
 

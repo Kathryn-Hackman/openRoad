@@ -23,14 +23,29 @@ export class Waypoint extends React.Component  {
     console.log(wholeParams)
     wholeParams.waypoints = waypointsBefore.concat(waypointsAfter);
     console.log(wholeParams)
-    props.navigation.navigate('Route',{wholeParams})
+    saveJourney = async() => {
+      console.log('inside savejourney inside RouteComponents')
+    try {
+      console.log('inside the try')
+      // await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'workingJourney/', {intermediates:true})
+      // console.log('made a directory')
+      journeyInProgress = await FileSystem.writeAsStringAsync(FileSystem.documentDirectory + 'workingJourney/journey.txt/', JSON.stringify(wholeParams));
+      console.log('it worked for RouteComponents')
+      props.navigation.navigate('Route',{wholeParams})
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
+  saveJourney()
+    
 
   }
 
   ifNotFinal(index, len, props){
         if(index!=0 && index !=len-1){
-          return(<TouchableOpacity onPress={() => this.removeSelf(props)}>
-          <Text>X</Text>
+          return(<TouchableOpacity style = {{zIndex: 1, position: 'absolute', paddingLeft: 325, justifyContent: 'right', paddingTop: 38}} onPress={() => this.removeSelf(props)}>
+          <Image source = {require('../assets/images/close-button-png-30231.png')} style = {{width: 20, height: 20}}></Image>
         </TouchableOpacity>)
         }
   }
@@ -82,13 +97,13 @@ const styles = StyleSheet.create({
     color: '#eef9fe'
   },
   addr: {
-    fontSize: 10,
-    color: '#eef9fe'
+    fontSize: 12,
+    color: '#777777'
 
   },
   timeSpent: {
-    fontSize: 12,
-    color: '#eef9fe'
+    fontSize: 14,
+    color: '#777777'
   },
   box:{
     alignSelf: 'flex-end',

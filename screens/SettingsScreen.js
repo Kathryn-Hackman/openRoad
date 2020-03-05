@@ -28,14 +28,6 @@ const {navigate} = props.navigation;
       <View style = {styles.viewHeight}>
       {buttonList}
       </View>
-      <View>
-        <Text style = {styles.middleText}> ------- or -------</Text>
-      </View>
-      <View>
-      <TextInput style = {styles.textInput}>
-          <Text style = {styles.textStyle}>Enter Custom Waypoint:</Text>
-      </TextInput>
-      </View>
     </LinearGradient>
   );
 }

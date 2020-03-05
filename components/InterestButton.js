@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, Text, Dimensions, View, StyleSheet, Button, TouchableOpacity} from 'react-native';
 import ActionButton from 'react-native-action-button';
+import * as FileSystem from 'expo-file-system';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export class InterestButton extends React.Component  {
@@ -33,14 +34,31 @@ export class InterestButton extends React.Component  {
 
         const url = "https://openroadflaskapp.herokuapp.com/";
         const urlWithParams = url+'getWaypoints?start='+encodeURIComponent(start.addr)+"&end="+encodeURIComponent(end.addr)+"&interests="+encodeURIComponent("['"+interest+"']")+"&num="+encodeURIComponent("1")
-        console.log("Adding Waypoint for interest " + interest);
-        console.log(urlWithParams);
+        // console.log("Adding Waypoint for interest " + interest);
+        // console.log(urlWithParams);
     fetch(urlWithParams)
       .then(res => res.json())
       .then(json => {
         var newWaypoints = this.props.startList.concat(json.waypoints).concat(this.props.endList);
         this.props.wholeParams.waypoints = newWaypoints;
-        this.props.navigation.navigate('Route',this.props.wholeParams);
+        // console.log('WHOLE PARAMS')
+        // console.log(this.props.wholeParams)
+        console.log('')
+        saveJourney = async() => {
+          console.log('inside savejourney')
+        try {
+          console.log('inside the try')
+          // await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'workingJourney/', {intermediates:true})
+          // console.log('made a directory')
+          journeyInProgress = await FileSystem.writeAsStringAsync(FileSystem.documentDirectory + 'workingJourney/journey.txt/', JSON.stringify(this.props.wholeParams));
+          console.log('it worked')
+          this.props.navigation.navigate('Route',this.props.wholeParams);
+        }
+        catch(e) {
+          console.log(e);
+        }
+      }
+      saveJourney()
       });
 
     }

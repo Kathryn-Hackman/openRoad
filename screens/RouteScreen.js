@@ -30,15 +30,15 @@ export default class RouteScreen extends Component {
 
   addTimeCallback(time){
     this._isMounted = true;
-    console.log("CALLBACK CALLED");
-    console.log(time)
+    // console.log("CALLBACK CALLED");
+    // console.log(time)
     this.arrayForTimes+=(parseInt(time));
     this.numReturned+=1;
-    console.log(this.arrayForTimes)
-    console.log("arrayForTimes above. below is sum, then numRet, then len")
-    console.log(this.arrayForTimes);
-    console.log(this.numReturned)
-    console.log(this.props.navigation.state.params.waypoints.length-1);
+    // console.log(this.arrayForTimes)
+    // console.log("arrayForTimes above. below is sum, then numRet, then len")
+    // console.log(this.arrayForTimes);
+    // console.log(this.numReturned)
+    // console.log(this.props.navigation.state.params.waypoints.length-1);
     if (this.numReturned == this.props.navigation.state.params.waypoints.length-1){
       console.log("i am satisfied")
       //arraySum = this.arrayForTimes.reduce(this.add,0); // with initial value to avoid when the array is empty
@@ -141,10 +141,10 @@ styles = StyleSheet.create({
     return (
       <View style = {{height: '100%', backgroundColor: '#ffce07'}}>
         <ScrollView>
-        <View><Text style = {{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5, paddingTop:8}}>Edit Journey</Text></View>
-          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5}}>{params.name}</Text>
-          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5}}>Estimated Trip Time:</Text>
-          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#eef9fe', fontSize: 14, color: '#eef9fe', paddingRight:5}}>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} / {this.secToHour(params.time)}</Text>
+        <View><Text style = {{textAlign:'right', fontFamily: 'work-sans', color: '#777777', fontSize: 14, paddingRight:5, paddingTop:8}}>Edit Journey</Text></View>
+          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#777777', fontSize: 14, paddingRight:5}}>{params.name}</Text>
+          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#777777', fontSize: 14, paddingRight:5}}>Estimated Trip Time:</Text>
+          <Text style={{textAlign:'right', fontFamily: 'work-sans', color: '#777777', fontSize: 14, paddingRight:5}}>{this.secToHour(waypointsBlocksRetVal[1] + this.state.timeSum)} / {this.secToHour(params.time)}</Text>
           {waypointsBlocksRetVal[0]}
         <TouchableOpacity style = {this.styles.buttonStyle} onPress={() => this.props.navigation.navigate('Preview', params)}>
           <Text style = {this.styles.textStyle}>Show Map Overview</Text>

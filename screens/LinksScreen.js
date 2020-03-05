@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, StyleSheet, View, Text, Button, TouchableOpacity} from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as FileSystem from 'expo-file-system';
 import { TextInputBox } from '../components/TextInputBox';
 
 var url = "https://openroadflaskapp.herokuapp.com/";
@@ -106,8 +107,23 @@ fetch(
 )
 	.then(res => res.json())
 	.then(json => {
-		newJourneyParams = json;
-    navigate('Route',newJourneyParams);
+    newJourneyParams = json; 
+    console.log('right before savejourney')
+    saveJourney = async() => {
+      console.log('inside savejourney')
+    try {
+      console.log('inside the try')
+      await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'workingJourney/', {intermediates:true})
+      console.log('made a directory')
+      journeyInProgress = await FileSystem.writeAsStringAsync(FileSystem.documentDirectory + 'workingJourney/journey.txt/', JSON.stringify(newJourneyParams));
+      console.log('it worked')
+      navigate('Route',newJourneyParams);
+  }
+    catch(e) {
+      console.log(e);
+    }
+  }
+  saveJourney()
 	});
 }
 
@@ -133,6 +149,7 @@ fetch(
           <Text style = {styles.textStyle}>Create Journey!</Text>
         </TouchableOpacity>
       </LinearGradient>
+      
     );
   }
 }
