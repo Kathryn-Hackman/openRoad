@@ -1,10 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableOpacity} from 'react-native';
 import { Image } from 'react-native-elements';
-
-
-
-
+import * as FileSystem from 'expo-file-system';
 
 export class Waypoint extends React.Component  {
   secToHour(x){

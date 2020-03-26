@@ -7,8 +7,10 @@ import '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationEvents, NavigationActions, createAppContainer } from 'react-navigation';
 import t from 'tcomb-form-native';
+import { CustomWaypoint } from '../components/CustomWaypoint';
 
 export default function SettingsScreen(props) {
+  
 
   var interestList = ['Hiking','Museum','Restaurant', 'Shopping', 'Coffee Shop', 'Gas Station'];
   //var interestList = ['one', 'two', 'three', 'four'];
@@ -27,6 +29,9 @@ const {navigate} = props.navigation;
       <Text style = {styles.text}>Which type of waypoint would you like to add?</Text>
       <View style = {styles.viewHeight}>
       {buttonList}
+      </View>
+      <View>
+        <CustomWaypoint></CustomWaypoint>
       </View>
     </LinearGradient>
   );

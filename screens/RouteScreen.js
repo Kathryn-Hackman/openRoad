@@ -65,8 +65,11 @@ export default class RouteScreen extends Component {
     console.log("starting")
 
     for(let i = 0; i < waypoints.length; i++){
-
+      console.log('waypoint')
+      console.log(waypoints)
+      console.log('ABOVE PUSH');
       waypointBlocks.push(
+        
         <Waypoint key={waypoints[i].name} location={waypoints[i]} index={i} wholeParams={wholeParams} navigation={props.navigation}></Waypoint>
       )
       travelTimeEstimate += waypoints[i].time;

@@ -6,24 +6,24 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 export class InterestButton extends React.Component  {
     
-  findWaypointsOn(startList,endList){
-    const url = "https://openroadflaskapp.herokuapp.com/";
-    var wholeParams = this.props.wholeParams;
-    var start = startList[startList.length-1];
-    var end = endList[0];
-    const fullUrl = url+'getWaypoints?start='+encodeURIComponent(start.addr)+"&end="+encodeURIComponent(end.addr)+"&interests="+encodeURIComponent("['hiking','museums']")+"&num="+encodeURIComponent("1")
-    //console.log(fullUrl);
-    fetch(
-      fullUrl
-    )
-      .then(res => res.json())
-      .then(json => {
-        var newWaypoints = startList.concat(json.waypoints).concat(endList);
-        wholeParams.waypoints = newWaypoints;
-        this.props.navigation.navigate('Settings',wholeParams);
-      });
+  // findWaypointsOn(startList,endList){
+  //   const url = "https://openroadflaskapp.herokuapp.com/";
+  //   var wholeParams = this.props.wholeParams;
+  //   var start = startList[startList.length-1];
+  //   var end = endList[0];
+  //   const fullUrl = url+'getWaypoints?start='+encodeURIComponent(start.addr)+"&end="+encodeURIComponent(end.addr)+"&interests="+encodeURIComponent("['hiking','museums']")+"&num="+encodeURIComponent("1")
+  //   //console.log(fullUrl);
+  //   fetch(
+  //     fullUrl
+  //   )
+  //     .then(res => res.json())
+  //     .then(json => {
+  //       var newWaypoints = startList.concat(json.waypoints).concat(endList);
+  //       wholeParams.waypoints = newWaypoints;
+  //       this.props.navigation.navigate('Settings',wholeParams);
+  //     });
 
-  }
+  // }
 
 
     handlePress(interest){

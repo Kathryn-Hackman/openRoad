@@ -10,13 +10,6 @@ export default class TravelTime extends React.Component {//same as TravelTimeTwo
       loading: 'initial',
       data: ''
     };
-
-
- 
-    //console.log('This happens 1st.');
-
-
-
   }
   secToHour(x){
     var h = Math.floor(x / 3600); 

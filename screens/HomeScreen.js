@@ -49,19 +49,18 @@ export default function HomeScreen(props) {
       return (
         <LinearGradient colors = {['#ff9800', '#ffce07']} style ={{flex:1}}>
           <View style = {styles.container}>
-          <TouchableOpacity disabled = {!hasSavedData} onPress={() => navigate('Route', journeyInProgressJSON)}>
-            <Text>Resume creating previous journey</Text>
-          </TouchableOpacity>
           <Image source = {require('../assets/images/finaldarklogo.png')} style = {{width: 200, height: 200}}></Image>
           <Text></Text>
           <Text style = {styles.titleText}>Open Road</Text>
           </View>
           <View>
-          <Image source = {require('../assets/images/drawable-mdpi/path_244.png')}></Image>
+          <TouchableOpacity disabled = {!hasSavedData} style = {styles.buttonStyle} onPress={() => navigate('Route', journeyInProgressJSON)}>
+            <Text style = {styles.textStyle}>Resume previous journey</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style = {styles.buttonStyle} onPress={() => navigate('Links')}>
+            <Text style = {styles.textStyle}>Start a new journey</Text>
+          </TouchableOpacity>
           </View>
-          <ActionButton onPress={() => navigate('Links')}>
-            <Text>Start a new journey</Text>
-          </ActionButton>
         </LinearGradient>
       );
     }
@@ -70,16 +69,42 @@ export default function HomeScreen(props) {
 
 const styles = StyleSheet.create({
 
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
-  },
+  // actionButtonIcon: {
+  //   fontSize: 20,
+  //   height: 22,
+  //   color: 'white',
+  // },
+    buttonStyle: {
+      marginTop:10,
+      paddingTop:15,
+      paddingBottom:15,
+      marginLeft:30,
+      marginRight:30,
+      marginBottom: 15,
+      backgroundColor:'#ff9800',
+      borderRadius:10,
+      borderWidth: 2,
+      borderColor: '#fff'
+  
+    },
+    clearButtonStyle: {
+      // if there's no previous saved journey set opacity = 0 to make this button invisible
+      opacity: 0,
+
+    },
+
+    textStyle: {
+      fontFamily: 'work-sans',
+      color: 'white',
+      fontSize: 20,
+      textAlign: 'center',
+      justifyContent: 'center'
+    },
 
   container: {
     justifyContent: "center",
     alignItems: "center",
-    height: '80%',
+    height: '70%',
   },
   titleText: {
     fontSize: 30,

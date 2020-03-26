@@ -26,7 +26,7 @@ export class JourneyInputForm extends React.Component  {
 		})
 	}
 
-  function createNewJourney(start,end) {
+createNewJourney(start,end) {
   
 		console.log("Creating New Journey...");
 		fetch(
